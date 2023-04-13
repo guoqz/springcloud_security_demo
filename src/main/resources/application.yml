@@ -1,0 +1,43 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: springcloud-order
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://192.168.1.6:3306/test?characterEncoding=utf8&serverTimezone=Asia/Shanghai&useSSL=false
+    username: root
+    password: root
+    druid:
+      initial-size: 1
+      max-active: 10
+      min-idle: 2
+      max-wait: 30000
+  redis:
+    #    host: 127.0.0.1
+    host: 192.168.100.50
+    port: 6379
+    password: root
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
+  rabbitmq:
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 2000
+          max-attempts: 3
+    host: 192.168.100.50
+    port: 5672
+    username: guoqz
+    password: guoqz
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
